@@ -1,0 +1,20 @@
+# https://teratail.com/questions/253691
+version: '3'
+
+services: 
+  express-db:
+    container_name: express-db
+    build: ./express_db/db_settings
+    ports:
+      - 13306:3306
+    environment: 
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sample
+      MYSQL_USER: sample_user
+      MYSQL_PASSWORD: sample
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./express_db/data:/var/lib/mysql
+      - ./express_db/db_settings/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./express_db/sql:/docker-entrypoint-initdb.d
+    tty: true
