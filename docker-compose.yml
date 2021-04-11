@@ -2,9 +2,9 @@
 version: '3'
 
 services: 
-  express-db:
-    container_name: express-db
-    build: ./express_db/db_settings
+  mysql-db-sample:
+    container_name: mysql-db-sample
+    build: ./mysql-sample
     ports:
       - 13306:3306
     environment: 
@@ -14,7 +14,7 @@ services:
       MYSQL_PASSWORD: sample
       TZ: 'Asia/Tokyo'
     volumes:
-      - ./express_db/data:/var/lib/mysql
-      - ./express_db/db_settings/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./express_db/sql:/docker-entrypoint-initdb.d
+      - ./mysql-sample/data:/var/lib/mysql
+      - ./mysql-sample/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./mysql-sample/sql:/docker-entrypoint-initdb.d
     tty: true
